@@ -15,7 +15,7 @@ function App() {
 
   useEffect( () => {
     const getRecipe = async () => {
-      const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=avocado&app_id=${MY_ID}&app_key=${MY_KEY}`);
+      const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=salmon&app_id=${MY_ID}&app_key=${MY_KEY}`);
       const data = await response.json();
       console.log(data.hits);
       setSearchResult(data.hits)
@@ -28,8 +28,6 @@ function App() {
     console.log(e.target.value)
     setUserSearch(e.target.value)
   }
-
-  console.log('searchResult', searchResult)
 
   return (
     <div className='App'>
@@ -53,9 +51,14 @@ function App() {
         </button>
       </div>
 
-      {searchResult.map(element => (
-        <MyRecipes />
-      ))}
+        {searchResult.map(element => (
+          <MyRecipes 
+          label={element.recipe.label} 
+          image={element.recipe.image} 
+          calories={element.recipe.calories} 
+          ingredients={element.recipe.ingredientLines} />
+        ))}
+
 
   
 
