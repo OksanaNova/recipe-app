@@ -12,6 +12,7 @@ function App() {
 
   const [userSearch, setUserSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [wordSubmitted, setWordSubmitted] = useState("avocado");
 
   useEffect( () => {
     const getRecipe = async () => {

@@ -1,3 +1,5 @@
+import check from './assets/check.png';
+
 function MyRecipes({label, image, calories, ingredients}) {
 
     return (
@@ -13,9 +15,11 @@ function MyRecipes({label, image, calories, ingredients}) {
 
            <ul className="container list">
             {ingredients.map(ingredient => (
-                <li>{ingredient}</li>
+                <li>
+                    <img src={check} alt='check-mark' className='icon'/>
+                    {ingredient}
+                </li>
             ))}
-
            </ul>
 
             <div className="container">
