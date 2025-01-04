@@ -12,22 +12,27 @@ function App() {
 
   const [userSearch, setUserSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  const [wordSubmitted, setWordSubmitted] = useState("avocado");
+  const [wordSubmitted, setWordSubmitted] = useState("");
 
   useEffect( () => {
     const getRecipe = async () => {
-      const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=salmon&app_id=${MY_ID}&app_key=${MY_KEY}`);
+      const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${wordSubmitted}&app_id=${MY_ID}&app_key=${MY_KEY}`);
       const data = await response.json();
       console.log(data.hits);
       setSearchResult(data.hits)
     }
     getRecipe()
-  }, [])
+  }, [wordSubmitted])
 
 
   const myRecipeSearch = (e) => {
     console.log(e.target.value)
     setUserSearch(e.target.value)
+  }
+
+  const finalSearch = (e) => {
+    e.preventDefault()
+    setWordSubmitted(userSearch)
   }
 
   return (
@@ -41,7 +46,7 @@ function App() {
       </div>
 
       <div className='container'>
-         <form>
+         <form onSubmit={finalSearch}> 
             <input className='search' onChange={myRecipeSearch} value={userSearch}/>
          </form>
       </div>
