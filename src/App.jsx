@@ -52,13 +52,13 @@ function App() {
       </div>
 
       <div className='container'>
-        <button>
+        <button onClick={finalSearch}>
            <img src="https://img.icons8.com/fluency/48/000000/fry.png" alt="icon"/>
         </button>
       </div>
 
-        {searchResult.map(element => (
-          <MyRecipes 
+        {searchResult.map((element, index) => (
+          <MyRecipes key={index}
           label={element.recipe.label} 
           image={element.recipe.image} 
           calories={element.recipe.calories} 

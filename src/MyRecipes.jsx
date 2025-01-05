@@ -14,8 +14,8 @@ function MyRecipes({label, image, calories, ingredients}) {
             </div>
 
            <ul className="container list">
-            {ingredients.map(ingredient => (
-                <li>
+            {ingredients.map((ingredient, index) => (
+                <li key={index}>
                     <img src={check} alt='check-mark' className='icon'/>
                     {ingredient}
                 </li>
